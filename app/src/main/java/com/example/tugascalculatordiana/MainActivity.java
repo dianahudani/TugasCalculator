@@ -7,19 +7,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean isOpPressed = false;
-    private boolean isComma = false;
     private double firstNumber = 0;
-    private int secondNumberIndex = 0;
+    private double secondNumber = 0;
+    private double hasil = 0;
+    private boolean secondNumberFlag = false;
+    private boolean flagFakeNumber = false;
     private char currentOp;
+    private String screenContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mylayout);
-        final TextView calculatorScreen = findViewById(R.id.calculatorScreen);
+        setContentView(R.layout.activity_main);
+        final TextView history = findViewById(R.id.history);
+        final TextView viewHasil = findViewById(R.id.calculatorScreen);
         final Button n0 = findViewById(R.id.n0);
         final Button n1 = findViewById(R.id.n1);
         final Button n2 = findViewById(R.id.n2);
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final Button n8 = findViewById(R.id.n8);
         final Button n9 = findViewById(R.id.n9);
         final Button btnAdd = findViewById(R.id.addition);
+        final Button btnClear = findViewById(R.id.clear);
         final Button btnMulti = findViewById(R.id.multiplication);
         final Button btnSub = findViewById(R.id.subtraction);
         final Button btnDiv = findViewById(R.id.division);
@@ -43,111 +49,214 @@ public class MainActivity extends AppCompatActivity {
                 final int id = v.getId();
                 switch (id) {
                     case R.id.n0:
-                        calculatorScreen.append("0");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("0");
                         break;
                     case R.id.n1:
-                        calculatorScreen.append("1");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("1");
                         break;
                     case R.id.n2:
-                        calculatorScreen.append("2");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("2");
                         break;
                     case R.id.n3:
-                        calculatorScreen.append("3");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("3");
                         break;
                     case R.id.n4:
-                        calculatorScreen.append("4");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("4");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("4");
                         break;
                     case R.id.n5:
-                        calculatorScreen.append("5");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("5");
                         break;
                     case R.id.n6:
-                        calculatorScreen.append("6");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("6");
                         break;
                     case R.id.n7:
-                        calculatorScreen.append("7");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("7");
                         break;
                     case R.id.n8:
-                        calculatorScreen.append("8");
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("8");
                         break;
                     case R.id.n9:
-                        calculatorScreen.append("9");
-                        break;
-                    case R.id.addition:
-                        String screenContent = calculatorScreen.getText().toString();
-                        firstNumber = Double.parseDouble(screenContent);
-                        secondNumberIndex = screenContent.length() + 1;
-                        isOpPressed = true;
-                        calculatorScreen.append("+");
-                        currentOp = '+';
-                        break;
-                    case R.id.subtraction:
-                        String screenContentSub = calculatorScreen.getText().toString();
-                        firstNumber = Double.parseDouble(screenContentSub);
-                        secondNumberIndex = screenContentSub.length() + 1;
-                        isOpPressed = true;
-                        calculatorScreen.append("-");
-                        currentOp = '-';
-                        break;
-                    case R.id.multiplication:
-                        String screenContentMul = calculatorScreen.getText().toString();
-                        firstNumber = Double.parseDouble(screenContentMul);
-                        secondNumberIndex = screenContentMul.length() + 1;
-                        isOpPressed = true;
-                        calculatorScreen.append("×");
-                        currentOp = '×';
-                        break;
-                    case R.id.division:
-                        String screenContentDiv = calculatorScreen.getText().toString();
-                        firstNumber = Double.parseDouble(screenContentDiv);
-                        secondNumberIndex = screenContentDiv.length() + 1;
-                        isOpPressed = true;
-                        calculatorScreen.append("÷");
-                        currentOp = '÷';
+                        if(viewHasil.getText().toString().equals("0")){
+                            viewHasil.setText("");
+                        }
+                        if(flagFakeNumber){
+                            viewHasil.setText("");
+                            flagFakeNumber = false;
+                        }
+                        viewHasil.append("9");
                         break;
                     case R.id.comma:
-                        if(isComma){
-                            calculatorScreen.append("");
-                            break;
+                        if(!viewHasil.getText().toString().contains(".")){
+                            viewHasil.append(".");
                         }
-                        else {
-                            calculatorScreen.append(".");
-                            isComma = true;
-                            break;
+                        break;
+
+                    case R.id.addition:
+                        screenContent = viewHasil.getText().toString();
+                        if (secondNumberFlag){
+                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
+                            hasil = hitung(currentOp,firstNumber,secondNumber);
+                            secondNumber = 0;
+                            firstNumber = hasil;
+                            viewHasil.setText(Double.toString(hasil));
+                        }else {
+                            firstNumber = Double.parseDouble(screenContent);
                         }
+                        history.setText(Double.toString(firstNumber) + " +");
+                        flagFakeNumber = true;
+                        secondNumberFlag = true;
+                        currentOp = '+';
+                        break;
+                    case R.id.division:
+                        screenContent = viewHasil.getText().toString();
+                        if (secondNumberFlag){
+                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
+                            hasil = hitung(currentOp,firstNumber,secondNumber);
+                            secondNumber = 0;
+                            firstNumber = hasil;
+                            viewHasil.setText(Double.toString(hasil));
+                        }else {
+                            firstNumber = Double.parseDouble(screenContent);
+                        }
+                        history.setText(Double.toString(firstNumber) + " /");
+                        flagFakeNumber = true;
+                        secondNumberFlag = true;
+                        currentOp = '/';
+                        break;
+                    case R.id.subtraction:
+                        screenContent = viewHasil.getText().toString();
+                        if (secondNumberFlag){
+                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
+                            hasil = hitung(currentOp,firstNumber,secondNumber);
+                            secondNumber = 0;
+                            firstNumber = hasil;
+                            viewHasil.setText(Double.toString(hasil));
+                        }else {
+                            firstNumber = Double.parseDouble(screenContent);
+                        }
+                        history.setText(Double.toString(firstNumber) + " -");
+                        flagFakeNumber = true;
+                        secondNumberFlag = true;
+                        currentOp = '-';
+                        break;
+//                    case R.id.btn_Percent:
+//                        Toast.makeText(getApplicationContext(), "Ini adalah contoh Toast di Android",Toast.LENGTH_LONG).show();
+//                        screenContent = viewHasil.getText().toString();
+//                        if (secondNumberFlag){
+//                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
+//                            hasil = hitung(currentOp,firstNumber,secondNumber);
+//                            secondNumber = 0;
+//                            firstNumber = hasil;
+//                            viewHasil.setText(Double.toString(hasil));
+//                        }else {
+//                            firstNumber = Double.parseDouble(screenContent);
+//                        }
+//                        history.setText(Double.toString(firstNumber) + " %");
+//                        flagFakeNumber = true;
+//                        secondNumberFlag = true;
+//                        currentOp = '%';
+//                        break;
+                    case R.id.multiplication:
+                        screenContent = viewHasil.getText().toString();
+                        if (secondNumberFlag){
+                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
+                            hasil = hitung(currentOp,firstNumber,secondNumber);
+                            secondNumber = 0;
+                            firstNumber = hasil;
+                            viewHasil.setText(Double.toString(hasil));
+                        }else {
+                            firstNumber = Double.parseDouble(screenContent);
+                        }
+                        history.setText(Double.toString(firstNumber) + " x");
+                        flagFakeNumber = true;
+                        secondNumberFlag = true;
+                        currentOp = '*';
+                        break;
                     case R.id.equals:
-                        if(isOpPressed){
-                            if(currentOp == '+'){
-                                String screenContentString = calculatorScreen.getText().toString();
-                                String secondNumberString = screenContentString.substring(secondNumberIndex, screenContentString.length());
-                                double secondNumber = Double.parseDouble(secondNumberString);
-                                secondNumber += firstNumber;
-                                calculatorScreen.setText(String.valueOf(secondNumber));
-                            }
-                            else if(currentOp == '-'){
-                                String screenContentString = calculatorScreen.getText().toString();
-                                String secondNumberString = screenContentString.substring(secondNumberIndex, screenContentString.length());
-                                double secondNumber = Double.parseDouble(secondNumberString);
-                                secondNumber = firstNumber - secondNumber;
-                                calculatorScreen.setText(String.valueOf(secondNumber));
-                            }
-
-                            else if(currentOp == '×'){
-                                String screenContentString = calculatorScreen.getText().toString();
-                                String secondNumberString = screenContentString.substring(secondNumberIndex, screenContentString.length());
-                                double secondNumber = Double.parseDouble(secondNumberString);
-                                secondNumber *= firstNumber;
-                                calculatorScreen.setText(String.valueOf(secondNumber));
-                            }
-
-                            else if(currentOp == '÷'){
-                                String screenContentString = calculatorScreen.getText().toString();
-                                String secondNumberString = screenContentString.substring(secondNumberIndex, screenContentString.length());
-                                double secondNumber = Double.parseDouble(secondNumberString);
-                                secondNumber = firstNumber / secondNumber;
-                                calculatorScreen.setText(String.valueOf(secondNumber));
-                            }
-
+                        if (secondNumberFlag){
+                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
+                            hasil = hitung(currentOp,firstNumber,secondNumber);
+                            secondNumber = 0;
+                            firstNumber = hasil;
+                            history.setText("");
+                            viewHasil.setText(Double.toString(hasil));
+                            secondNumberFlag = false;
+                            flagFakeNumber = true;
                         }
+                        break;
+                    case R.id.clear:
+                        viewHasil.setText("0");
+                        history.setText("");
+                        isOpPressed = false;
+                        firstNumber = 0;
+                        secondNumber = 0;
+                        hasil = 0;
+                        secondNumberFlag = false;
+                        flagFakeNumber = false;
+                        break;
                 }
             }
         };
@@ -167,26 +276,23 @@ public class MainActivity extends AppCompatActivity {
         btnMulti.setOnClickListener(CalculatorListener);
         btnDiv.setOnClickListener(CalculatorListener);
         btnEquals.setOnClickListener(CalculatorListener);
+        //btnPercent.setOnClickListener(CalculatorListener);
+        btnClear.setOnClickListener(CalculatorListener);
+    }
 
-        final Button delete = findViewById(R.id.del);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String displayedElements = calculatorScreen.getText().toString();
-                int length = displayedElements.length();
-                if (length > 0) {
-                    displayedElements = displayedElements.substring(0, length - 1);
-                    calculatorScreen.setText(displayedElements);
-                }
-            }
-        });
-
-        final Button clear = findViewById(R.id.clear);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                calculatorScreen.setText("");
-            }
-        });
+    private double hitung(char operasi, double pertama, double kedua){
+        double outputHitung=(double)0;
+        if(operasi=='+'){
+            outputHitung = pertama + kedua;
+        }else if (operasi=='-'){
+            outputHitung = pertama - kedua;
+        }else if (operasi=='*'){
+            outputHitung = pertama * kedua;
+        }else if (operasi=='/'){
+            outputHitung = pertama / kedua;
+        }else if (operasi=='%'){
+            outputHitung = pertama * kedua / (double) 100;
+        }
+        return outputHitung;
     }
 }
