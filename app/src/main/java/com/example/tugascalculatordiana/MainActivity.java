@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean isOpPressed = false;
     private double firstNumber = 0;
     private double secondNumber = 0;
     private double hasil = 0;
@@ -202,23 +201,6 @@ public class MainActivity extends AppCompatActivity {
                         secondNumberFlag = true;
                         currentOp = '-';
                         break;
-//                    case R.id.btn_Percent:
-//                        Toast.makeText(getApplicationContext(), "Ini adalah contoh Toast di Android",Toast.LENGTH_LONG).show();
-//                        screenContent = viewHasil.getText().toString();
-//                        if (secondNumberFlag){
-//                            secondNumber = Double.parseDouble(viewHasil.getText().toString());
-//                            hasil = hitung(currentOp,firstNumber,secondNumber);
-//                            secondNumber = 0;
-//                            firstNumber = hasil;
-//                            viewHasil.setText(Double.toString(hasil));
-//                        }else {
-//                            firstNumber = Double.parseDouble(screenContent);
-//                        }
-//                        history.setText(Double.toString(firstNumber) + " %");
-//                        flagFakeNumber = true;
-//                        secondNumberFlag = true;
-//                        currentOp = '%';
-//                        break;
                     case R.id.multiplication:
                         screenContent = viewHasil.getText().toString();
                         if (secondNumberFlag){
@@ -250,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.clear:
                         viewHasil.setText("0");
                         history.setText("");
-                        isOpPressed = false;
                         firstNumber = 0;
                         secondNumber = 0;
                         hasil = 0;
@@ -276,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
         btnMulti.setOnClickListener(CalculatorListener);
         btnDiv.setOnClickListener(CalculatorListener);
         btnEquals.setOnClickListener(CalculatorListener);
-        //btnPercent.setOnClickListener(CalculatorListener);
         btnClear.setOnClickListener(CalculatorListener);
     }
 
@@ -290,8 +270,6 @@ public class MainActivity extends AppCompatActivity {
             outputHitung = pertama * kedua;
         }else if (operasi=='/'){
             outputHitung = pertama / kedua;
-        }else if (operasi=='%'){
-            outputHitung = pertama * kedua / (double) 100;
         }
         return outputHitung;
     }
