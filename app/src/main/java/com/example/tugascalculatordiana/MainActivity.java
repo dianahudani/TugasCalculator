@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btnDiv = findViewById(R.id.division);
         final Button btnComma = findViewById(R.id.comma);
         final Button btnEquals = findViewById(R.id.equals);
+        final Button btnDel = findViewById(R.id.del);
 
         final View.OnClickListener CalculatorListener = new View.OnClickListener() {
             @Override
@@ -238,6 +239,10 @@ public class MainActivity extends AppCompatActivity {
                         secondNumberFlag = false;
                         flagFakeNumber = false;
                         break;
+                    case R.id.del:
+                        String text = viewHasil.getText().toString();
+                        viewHasil.setText(text.substring(0, text.length()-1));
+                        break;
                 }
             }
         };
@@ -258,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
         btnDiv.setOnClickListener(CalculatorListener);
         btnEquals.setOnClickListener(CalculatorListener);
         btnClear.setOnClickListener(CalculatorListener);
+        btnDel.setOnClickListener(CalculatorListener);
     }
 
     private double hitung(char operasi, double pertama, double kedua){
